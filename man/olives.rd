@@ -11,7 +11,7 @@ and South Apulia, Calabria, Sicily), two from Sardinia (Inland and
 Coastal) and 3 from northern Italy (Umbria, East and West
 Liguria). 
 }
-\usage{data(tips)}
+\usage{data(olives)}
 \format{A data frame with 244 rows and 7 variables}
 \references{
 Forina, M. and Armanino, C. and Lanteri, S. and

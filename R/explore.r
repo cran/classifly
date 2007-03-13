@@ -75,9 +75,8 @@ explore <- function(model, data, n=10000, method="nonaligned", advantage=TRUE, .
 	grid <- generate_classification_data(model, data, n=n, method=method, advantage=TRUE)
 	actual <- data[,c(v$predictor, v$response)]
 	actual[[".TYPE"]] <- factor("actual")
-	actual[[".ADVANTAGE"]] <- NA
 	
-	data <- rbind(grid, actual)
+	data <- rbind.fill(grid, actual)
 	class(data) <- c("classifly", class(data))
 	attr(data, "variables") <- v
 	data

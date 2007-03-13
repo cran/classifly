@@ -36,8 +36,9 @@ generate_classification_data <- function(model, data, n, method, advantage) {
 			
 		}
 	} else {
-		df[[v$response]] <- factor(max.col(post), labels=colnames(post))
+		df[[v$response]] <- factor(max.col(post), levels=1:ncol(post), labels=colnames(post))
 		if (advantage) df[[".ADVANTAGE"]] <- advantage(post)
+		df <- cbind(df, post)
 	}
 	df[[".TYPE"]] <- factor("simulated")
 	
@@ -102,7 +103,7 @@ posterior.glm <- function(model, data) {
 # @arguments matrix of posterior probabilities
 # @keyword classif
 advantage <- function(post) {
-	apply(post, 1, function(x) diff(x[order(x)[1:2]]))
+	apply(post, 1, function(x) -diff(x[order(x, decreasing=TRUE)[1:2]]))
 }
 
 # Variables
